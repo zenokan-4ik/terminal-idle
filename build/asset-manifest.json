@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.css": "/static/css/main.dcb95e0c.css",
-    "main.js": "/static/js/main.0bda4f52.js",
-    "index.html": "/index.html",
-    "main.dcb95e0c.css.map": "/static/css/main.dcb95e0c.css.map",
-    "main.0bda4f52.js.map": "/static/js/main.0bda4f52.js.map"
+    "main.css": "/terminal-idle/static/css/main.dcb95e0c.css",
+    "main.js": "/terminal-idle/static/js/main.0bda4f52.js",
+    "index.html": "/terminal-idle/index.html",
+    "main.dcb95e0c.css.map": "/terminal-idle/static/css/main.dcb95e0c.css.map",
+    "main.0bda4f52.js.map": "/terminal-idle/static/js/main.0bda4f52.js.map"
   },
   "entrypoints": [
     "static/css/main.dcb95e0c.css",
