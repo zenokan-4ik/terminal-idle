@@ -151,3 +151,4 @@ dist
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+build/static/css/main.dcb95e0c.css
