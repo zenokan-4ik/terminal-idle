@@ -1,0 +1,50 @@
+body {
+  background-color: #1e1e1e; /* Цвет фона терминала */
+  color: #ffffff; /* Цвет текста */
+  font-family: 'Courier New', Courier, monospace; /* Шрифт терминала */
+  padding: 20px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end; /* Выравнивание текста внизу */
+}
+
+.terminal {
+  border: 1px solid #00ff00; /* Цвет рамки терминала */
+  padding: 10px;
+  height: 300px; /* Высота терминала */
+  color: #00ff00;
+
+}
+
+.terminal .input-line {
+  display: flex;
+  align-items: center;
+}
+
+.terminal .input-line span {
+  color: #00ff00; /* Цвет текста ввода */
+}
+
+.terminal .input {
+  background: transparent; /* Прозрачный фон */
+  border: none; /* Без рамки */
+  color: #00ff00; /* Цвет текста */
+  outline: none; /* Без обводки */
+  flex: 1; /* Занимает оставшееся пространство */
+}
+
+.terminal .cursor {
+  display: inline-block;
+  width: 10px; /* Ширина курсора */
+  height: 20px; /* Высота курсора */
+  background-color: #00ff00; /* Цвет курсора */
+  animation: blink 1s step-end infinite; /* Анимация мигания */
+  margin-left: -10px; /* Сдвиг курсора влево */
+}
+
+@keyframes blink {
+  50% {
+      background-color: transparent; /* Полоска мигает */
+  }
+}
