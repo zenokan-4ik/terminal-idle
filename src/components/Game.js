@@ -1,8 +1,10 @@
+import { getPrettyNum } from "../commands";
+
 const Game = (props) => {
     return (
         <div className="game">
-            <p>Balance:  {Math.round(props.balance*100)/100}</p>
-            <p>Gain: {Math.round(props.gain*100)/100}</p>
+            <p>Balance:  {getPrettyNum(props.balance)}</p>
+            <p>Gain: {getPrettyNum(props.gain)}</p>
             <p>Prestige LVL: {props.prestige}</p>
         </div>
     )

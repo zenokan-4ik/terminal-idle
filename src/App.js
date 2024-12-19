@@ -9,6 +9,8 @@ function App() {
   const [gain, setGain] = useState(1)
   const [gainUPG, setGainUPG] = useState(1.01)
   const [prestige, setPrestige] = useState(0)
+  const [gainCount, setGainCount] = useState(0)
+  const [gainUPGCount, setGainUPGCount] = useState(0)
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -39,6 +41,10 @@ function App() {
         gainUPG={gainUPG}
         prestige={prestige}
         setPrestige={setPrestige}
+        setGainUPGCount={setGainUPGCount}
+        setGainCount={setGainCount}
+        gainUPGCount={gainUPGCount}
+        gainCount={gainCount}
       />
     </div>
   );

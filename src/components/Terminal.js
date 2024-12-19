@@ -11,7 +11,8 @@ const Terminal = (props) => {
             // Process the command and update the output
             const result = ProcessCommand(command, directory, props.setStarted,
                 props.setBalance, props.setGain, props.gain, props.balance,
-                props.gainUPG, props.setGainUPG, props.prestige, props.setPrestige, setOutput
+                props.gainUPG, props.setGainUPG, props.prestige, props.setPrestige, setOutput,
+                props.setGainUPGCount, props.setGainCount, props.gainCount, props.gainUPGCount
             );
             switch(result[0]){
                 case "help":

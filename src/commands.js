@@ -2,7 +2,8 @@ import { login } from './server'
 
 export const ProcessCommand = (command, directory, setStarted, setBalance,
                             setGain, gain, balance, gainUPG, setGainUPG,
-                            prestige, setPrestige, setOutput
+                            prestige, setPrestige, setOutput, setGainUPGCount,
+                            setGainCount, gainCount, gainUPGCount
     ) => {
     command = command.split(" ")
     let arg;
@@ -64,29 +65,33 @@ export const ProcessCommand = (command, directory, setStarted, setBalance,
                         setBalance(1)
                         return ["success", "$ Game started!"]
                     case "gain.exe":
-                        setGain(gain*gainUPG)
+                        setGain(gain * gainUPG * (1.5 / (1 + Math.exp(-balance / gain)))) // change using gainCount
+                        setGainCount(gainCount+1)
                         setBalance(0)
-                        return ["success", "$ Gain increased!! And money lost :)"]
+                        return ["success", "$ Gain changed!! And money lost :)"]
                     case "upgradegain.exe":
-                        if(balance >= 100 * gain){// TODO: FIX GAIN GAINUPG ETC.
-                            setGainUPG((gainUPG+1/gain))
-                            setBalance(balance-100*gain)
+                        if(balance >= 10 * gain * 1.2/(1 + Math.exp(-gain))){
+                            setGainUPGCount(gainUPGCount+1) 
+                            setGainUPG((gainUPG+(1/gain))) // change using gainUPGCount
+                            setBalance(balance-10 * gain * 1.2/(1 + Math.exp(-gain)) * (1.15**gainUPGCount))
                             return ["success", "$ Gain upgrade activated!"]
                         }
                         else{
-                            return ["error", "$ Not enough balance! ("+(Math.round(100*gain*100)/100)+") \n"]
+                            return ["error", "$ Not enough balance! ("+(getPrettyNum(10 * gain * 1.2/(1 + Math.exp(-gain))))+") \n"]
                         }
                     case "reset.exe":
                         if(balance >= 10_000_000*(prestige+1)){
                             setPrestige(prestige+1)
                             setBalance(0)
                             setStarted(0)
+                            setGain(1)
+                            setGainUPG(1.01)
                             setOutput([])
                             directory.files = []
                             return ["success", "$ Prestige!!!"]
                         }
                         else{
-                            return ["error", "$ Not enough balance! ("+10000000*(prestige+1)+") \n"]
+                            return ["error", "$ Not enough balance! ("+getPrettyNum(10000000*(prestige+1))+") \n"]
                         }
                     default:
                         return ["error", `$ File is not opened... \n`]
@@ -116,5 +121,17 @@ export class Directory{
             res.push("+-"+file)
         }
         return res
+    }
+}
+
+export function getPrettyNum(x) {
+    if (x < 1000) {
+        return Math.round(100*x)/100; // Return the number as-is if it's less than 1000
+    } else {
+        // Calculate the exponent
+        const b = Math.floor(Math.log10(x));
+        // Calculate the coefficient
+        const a = (x / Math.pow(10, b)).toFixed(2); // Round to 2 decimal places
+        return `${a}e${b}`; // Return in scientific notation
     }
 }
