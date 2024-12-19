@@ -1,21 +1,37 @@
-import { useState } from "react";
-import { ProcessCommand } from '../commands';
+import { useEffect, useState } from "react";
+import { ProcessCommand, Directory } from '../commands';
 
 const Terminal = (props) => {
     const [command, setCommand] = useState("");
     const [output, setOutput] = useState([]);
+    const [directory, setDirectory] = useState(new Directory());
 
     const handleKeyPress = (event) => {
         if (event.key === "Enter") {
             // Process the command and update the output
-            const result = ProcessCommand(command);
+            const result = ProcessCommand(command, directory, props.setStarted,
+                props.setBalance, props.setGain, props.gain, props.balance,
+                props.gainUPG, props.setGainUPG, props.prestige, props.setPrestige, setOutput
+            );
             switch(result[0]){
+                case "help":
+                    setOutput(prevOutput => [...prevOutput, "$ There is no help..."]);
+                    setCommand("");  
+                    break
+                case "exit":
                 case "clear":
                     setOutput([]);
                     setCommand(""); 
                     break
+                case "dir":
+                    setOutput(prevOutput => [...prevOutput, result[1]]);
+                    for(let file of directory.listFiles())
+                    setOutput(prevOutput => [...prevOutput, file]);
+                    console.log(directory.listFiles())
+                    setCommand("");  
+                    break
                 default:
-                    setOutput(prevOutput => [...prevOutput, result[1]]); // Create a new array
+                    setOutput(prevOutput => [...prevOutput, result[1]]);
                     setCommand("");  
                     break     
             }
