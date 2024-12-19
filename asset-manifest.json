@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/terminal-idle/static/css/main.ea507d9c.css",
-    "main.js": "/terminal-idle/static/js/main.6d37ca49.js",
+    "main.js": "/terminal-idle/static/js/main.6cf5d7ff.js",
     "index.html": "/terminal-idle/index.html",
     "main.ea507d9c.css.map": "/terminal-idle/static/css/main.ea507d9c.css.map",
-    "main.6d37ca49.js.map": "/terminal-idle/static/js/main.6d37ca49.js.map"
+    "main.6cf5d7ff.js.map": "/terminal-idle/static/js/main.6cf5d7ff.js.map"
   },
   "entrypoints": [
     "static/css/main.ea507d9c.css",
-    "static/js/main.6d37ca49.js"
+    "static/js/main.6cf5d7ff.js"
   ]
 }
